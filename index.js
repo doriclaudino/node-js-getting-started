@@ -1,10 +1,7 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
-
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const ganache = require("ganache-cli");
+const server = ganache.server();
+const port = 8545;
+server.listen(port, function (err, blockchain) {
+  if (err) console.log(err);
+  else console.log(blockchain);
+});
